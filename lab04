@@ -1,1 +1,174 @@
+Terminal: To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+Terminal: vboxuser@linuxubunto:~$ ifconfig
+Resposta t: Command 'ifconfig' not found, but can be installed with:
+sudo apt install net-tools
+Terminal: vboxuser@linuxubunto:~$ sudo apt  install net-tools
+Resposta t: [sudo] password for vboxuser: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  net-tools
+0 upgraded, 1 newly installed, 0 to remove and 148 not upgraded.
+Need to get 204 kB of archives.
+After this operation, 811 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 net-tools amd64 2.10-0.1ubuntu4.4 [204 kB]
+Fetched 204 kB in 2s (127 kB/s)     
+Selecting previously unselected package net-tools.
+(Reading database ... 214270 files and directories currently installed.)
+Preparing to unpack .../net-tools_2.10-0.1ubuntu4.4_amd64.deb ...
+Unpacking net-tools (2.10-0.1ubuntu4.4) ...
+Setting up net-tools (2.10-0.1ubuntu4.4) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get update
+Resposta t: Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 http://security.ubuntu.com/ubuntu noble-security InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Reading package lists... Done
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get install openssh-server
+Resposta t: Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  ncurses-term openssh-client openssh-sftp-server ssh-import-id
+Suggested packages:
+  keychain libpam-ssh monkeysphere ssh-askpass molly-guard
+The following NEW packages will be installed:
+  ncurses-term openssh-server openssh-sftp-server ssh-import-id
+The following packages will be upgraded:
+  openssh-client
+1 upgraded, 4 newly installed, 0 to remove and 147 not upgraded.
+Need to get 1,738 kB of archives.
+After this operation, 6,743 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-client amd64 1:9.6p1-3ubuntu13.14 [906 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-sftp-server amd64 1:9.6p1-3ubuntu13.14 [37.3 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-server amd64 1:9.6p1-3ubuntu13.14 [510 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble/main amd64 ncurses-term all 6.4+20240113-1ubuntu2 [275 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 ssh-import-id all 5.11-0ubuntu2.24.04.1 [10.1 kB]
+Fetched 1,738 kB in 2s (796 kB/s)
+Preconfiguring packages ...
+(Reading database ... 214318 files and directories currently installed.)
+Preparing to unpack .../openssh-client_1%3a9.6p1-3ubuntu13.14_amd64.deb ...
+Unpacking openssh-client (1:9.6p1-3ubuntu13.14) over (1:9.6p1-3ubuntu13.13) ...
+Selecting previously unselected package openssh-sftp-server.
+Preparing to unpack .../openssh-sftp-server_1%3a9.6p1-3ubuntu13.14_amd64.deb ...
+Unpacking openssh-sftp-server (1:9.6p1-3ubuntu13.14) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../openssh-server_1%3a9.6p1-3ubuntu13.14_amd64.deb ...
+Unpacking openssh-server (1:9.6p1-3ubuntu13.14) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../ncurses-term_6.4+20240113-1ubuntu2_all.deb ...
+Unpacking ncurses-term (6.4+20240113-1ubuntu2) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../ssh-import-id_5.11-0ubuntu2.24.04.1_all.deb ...
+Unpacking ssh-import-id (5.11-0ubuntu2.24.04.1) ...
+Setting up openssh-client (1:9.6p1-3ubuntu13.14) ...
+Setting up ssh-import-id (5.11-0ubuntu2.24.04.1) ...
+Setting up ncurses-term (6.4+20240113-1ubuntu2) ...
+Setting up openssh-sftp-server (1:9.6p1-3ubuntu13.14) ...
+Setting up openssh-server (1:9.6p1-3ubuntu13.14) ...
+
+Creating config file /etc/ssh/sshd_config with new version
+Created symlink /etc/systemd/system/sockets.target.wants/ssh.socket → /usr/lib/systemd/system/ssh.socket.
+Created symlink /etc/systemd/system/ssh.service.requires/ssh.socket → /usr/lib/systemd/system/ssh.socket.
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for ufw (0.36.2-6) ...
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl status ssh
+Resposta t: ○ ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: enabled)
+     Active: inactive (dead)
+TriggeredBy: ● ssh.socket
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+Terminal: vboxuser@linuxubunto:~$ ifconfig
+
+Resposta T: enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::a00:27ff:fe9b:bd55  prefixlen 64  scopeid 0x20<link>
+        inet6 fd17:625c:f037:2:a00:27ff:fe9b:bd55  prefixlen 64  scopeid 0x0<global>
+        inet6 fd17:625c:f037:2:4aa1:cd16:50a:54d4  prefixlen 64  scopeid 0x0<global>
+        ether 08:00:27:9b:bd:55  txqueuelen 1000  (Ethernet)
+        RX packets 1938  bytes 2409348 (2.4 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1515  bytes 126035 (126.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 491  bytes 42528 (42.5 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 491  bytes 42528 (42.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+Terminal: vboxuser@linuxubunto:~$ ssh vboxuser@10.0.2.15
+Resposta t: The authenticity of host '10.0.2.15 (10.0.2.15)' can't be established.
+ED25519 key fingerprint is SHA256:6PZ1Ck1LtZx9b11nrDZAimXXNOG++HeMUToJMDqCxk4.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '10.0.2.15' (ED25519) to the list of known hosts.
+Terminal: vboxuser@10.0.2.15's password: 
+Resposta t: Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.14.0-37-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+Expanded Security Maintenance for Applications is not enabled.
+
+145 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+
+applicable law.
+
+Terminal: vboxuser@linuxubunto:~$ sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bkp
+Resposta t: [sudo] password for vboxuser: 
+Sorry, try again.
+[sudo] password for vboxuser: 
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/ssh/sshd_config
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl restart sshd
+Resposta t: Failed to restart sshd.service: Unit sshd.service not found.
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl status ssh
+Resposta t: ● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: enabled)
+     Active: active (running) since Thu 2026-01-15 13:43:50 UTC; 5min ago
+TriggeredBy: ● ssh.socket
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 11300 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 11302 (sshd)
+      Tasks: 1 (limit: 3220)
+     Memory: 3.3M (peak: 4.4M)
+        CPU: 174ms
+     CGroup: /system.slice/ssh.service
+             └─11302 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Jan 15 13:43:50 linuxubunto systemd[1]: Starting ssh.service - OpenBSD Secure Shell server...
+Jan 15 13:43:50 linuxubunto sshd[11302]: Server listening on 0.0.0.0 port 22.
+Jan 15 13:43:50 linuxubunto sshd[11302]: Server listening on :: port 22.
+Jan 15 13:43:50 linuxubunto systemd[1]: Started ssh.service - OpenBSD Secure Shell server.
+Jan 15 13:44:04 linuxubunto sshd[11303]: Accepted password for vboxuser from 10.0.2.15 port 57364 ssh2
+Jan 15 13:44:04 linuxubunto sshd[11303]: pam_unix(sshd:session): session opened for user vboxuser(uid=1000) by vboxuser(uid=0)
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl restart ssh
+Terminal: vboxuser@linuxubunto:~$ ssh vboxuser@10.0.2.15 -p 2244
+Resposta t: ssh: connect to host 10.0.2.15 port 2244: Connection refused
+Terminal: vboxuser@linuxubunto:~$ ssh root@10.0.2.15 -p 2244
+Resposta t: ssh: connect to host 10.0.2.15 port 2244: Connection refused
+
 
