@@ -1,3 +1,5 @@
+# 1º  Instalação do SAMBA
+
 Terminal: vboxuser@linuxubunto:~$ sudo apt-get update
 [sudo] senha para vboxuser: 
 
@@ -16,31 +18,46 @@ Obter:12 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-pt [8.184
 Obter:13 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-pt_BR [18,2 kB]
 Baixados 2.919 kB em 3s (981 kB/s)              
 Lendo listas de pacotes... Pronto
-vboxuser@linuxubunto:~$ sudo apt-get install samba
-Lendo listas de pacotes... Pronto
+
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get install samba
+
+Resposta t: Lendo listas de pacotes... Pronto
 Construindo árvore de dependências... Pronto
 Lendo informação de estado... Pronto        
 samba já é a versão mais nova (2:4.19.5+dfsg-4ubuntu9.4).
 0 pacotes atualizados, 0 pacotes novos instalados, 0 a serem removidos e 147 não atualizados.
-vboxuser@linuxubunto:~$ sudo useradd -M -s /sbin/nologin dev_senior
-useradd: usuário 'dev_senior' já existe
-vboxuser@linuxubunto:~$ id dev senior
-id: “dev”: usuário inexistente
+
+# 2º Adicionar Usuários ao SAMBA
+
+Terminal: vboxuser@linuxubunto:~$ sudo useradd -M -s /sbin/nologin dev_senior
+Resposta t: useradd: usuário 'dev_senior' já existe
+
+Terminal: vboxuser@linuxubunto:~$ id dev senior
+Resposta t: id: “dev”: usuário inexistente
 id: “senior”: usuário inexistente
-vboxuser@linuxubunto:~$ id dev_senior
-uid=1001(dev_senior) gid=1001(dev_senior) grupos=1001(dev_senior)
-vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_senior
-New SMB password:
+
+Terminal: vboxuser@linuxubunto:~$ id dev_senior
+Resposta t: uid=1001(dev_senior) gid=1001(dev_senior) grupos=1001(dev_senior)
+
+Terminal: vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_senior
+Resposta t: New SMB password:
 Retype new SMB password:
-vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_junior
-New SMB password:
+
+Terminal: vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_junior
+Resposta t: New SMB password:
 Retype new SMB password:
-vboxuser@linuxubunto:~$ sudo mkdir -p /srv/samba/publico
-vboxuser@linuxubunto:~$ sudo chown nobody:nogroup /srv/samba/publico
-vboxuser@linuxubunto:~$ sudo chmod 777 /srv/samba/publico
-vboxuser@linuxubunto:~$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bkp
-vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
-Comando 'sodo' não encontrado, você quis dizer:
+
+# 3º Criar Diretórios para Compartilhamento
+
+Terminal: vboxuser@linuxubunto:~$ sudo mkdir -p /srv/samba/publico
+Terminal: vboxuser@linuxubunto:~$ sudo chown nobody:nogroup /srv/samba/publico
+Terminal: vboxuser@linuxubunto:~$ sudo chmod 777 /srv/samba/publico
+
+# 4º Configurar os Compartilhamentos
+
+Terminal: vboxuser@linuxubunto:~$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bkp
+Terminal: vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
+Resposta t: Comando 'sodo' não encontrado, você quis dizer:
   comando 'nodo' do snap nodo (master)
   comando 'todo' do deb devtodo (0.1.20+git20200830.0ad52b0-3)
   comando 'sudo' do deb sudo (1.9.15p5-3ubuntu5.24.04.1)
@@ -48,22 +65,29 @@ Comando 'sodo' não encontrado, você quis dizer:
   comando 'solo' do deb solo1-cli (0.1.1-4)
 
 Veja 'snap info <snapname>' para versões adicionais.
-vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
-Comando 'sodo' não encontrado, você quis dizer:
+
+Terminal: vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
+Resposta t: Comando 'sodo' não encontrado, você quis dizer:
   comando 'nodo' do snap nodo (master)
   comando 'solo' do deb solo1-cli (0.1.1-4)
   comando 'todo' do deb devtodo (0.1.20+git20200830.0ad52b0-3)
   comando 'sudo' do deb sudo (1.9.15p5-3ubuntu5.24.04.1)
   comando 'sudo' do deb sudo-ldap (1.9.15p5-3ubuntu5.24.04.1)
 Veja 'snap info <snapname>' para versões adicionais.
-vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
-vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
-vboxuser@linuxubunto:~$ sudo systemctl restart smbd
-Warning: The unit file, source configuration file or drop-ins of smbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
-vboxuser@linuxubunto:~$ sudo systemctl restart nmbd
-Warning: The unit file, source configuration file or drop-ins of nmbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
-vboxuser@linuxubunto:~$ testparm
-Load smb config files from /etc/samba/smb.conf
+
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
+
+# 5º Reiniciar e Testar
+
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl restart smbd
+Resposta t: Warning: The unit file, source configuration file or drop-ins of smbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+Terminal: vboxuser@linuxubunto:~$ sudo systemctl restart nmbd
+Resposta t: Warning: The unit file, source configuration file or drop-ins of nmbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+Terminal: vboxuser@linuxubunto:~$ testparm
+Resposta t: Load smb config files from /etc/samba/smb.conf
 Loaded services file OK.
 Weak crypto is allowed by GnuTLS (e.g. NTLM as a compatibility fallback)
 
@@ -116,8 +140,8 @@ create mask = 0700
 	path = /srv/projetos
 	read only = No
 	valid users = @desenvolvedores
-vboxuser@linuxubunto:~$ systemctl status smbd
-Warning: The unit file, source configuration file or drop-ins of smbd.service c>
+Terminal: vboxuser@linuxubunto:~$ systemctl status smbd
+Resposta t: Warning: The unit file, source configuration file or drop-ins of smbd.service c>
 ● smbd.service - Samba SMB Daemon
      Loaded: loaded (/usr/lib/systemd/system/smbd.service; enabled; preset: ena>
      Active: active (running) since Tue 2026-01-20 13:19:41 UTC; 1min 0s ago
