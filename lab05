@@ -1,0 +1,137 @@
+vboxuser@linuxubunto:~$ sudo apt-get update
+[sudo] senha para vboxuser: 
+Atingido:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+Atingido:2 http://archive.ubuntu.com/ubuntu noble InRelease                  
+Atingido:3 https://dl.google.com/linux/chrome/deb stable InRelease           
+Atingido:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Atingido:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Obter:6 http://archive.ubuntu.com/ubuntu noble/main Translation-pt_BR [324 kB]
+Obter:7 http://archive.ubuntu.com/ubuntu noble/main Translation-pt [156 kB]
+Obter:8 http://archive.ubuntu.com/ubuntu noble/restricted Translation-pt [580 B]
+Obter:9 http://archive.ubuntu.com/ubuntu noble/restricted Translation-pt_BR [576 B]
+Obter:10 http://archive.ubuntu.com/ubuntu noble/universe Translation-pt [812 kB]
+Obter:11 http://archive.ubuntu.com/ubuntu noble/universe Translation-pt_BR [1.600 kB]
+Obter:12 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-pt [8.184 B]
+Obter:13 http://archive.ubuntu.com/ubuntu noble/multiverse Translation-pt_BR [18,2 kB]
+Baixados 2.919 kB em 3s (981 kB/s)              
+Lendo listas de pacotes... Pronto
+vboxuser@linuxubunto:~$ sudo apt-get install samba
+Lendo listas de pacotes... Pronto
+Construindo árvore de dependências... Pronto
+Lendo informação de estado... Pronto        
+samba já é a versão mais nova (2:4.19.5+dfsg-4ubuntu9.4).
+0 pacotes atualizados, 0 pacotes novos instalados, 0 a serem removidos e 147 não atualizados.
+vboxuser@linuxubunto:~$ sudo useradd -M -s /sbin/nologin dev_senior
+useradd: usuário 'dev_senior' já existe
+vboxuser@linuxubunto:~$ id dev senior
+id: “dev”: usuário inexistente
+id: “senior”: usuário inexistente
+vboxuser@linuxubunto:~$ id dev_senior
+uid=1001(dev_senior) gid=1001(dev_senior) grupos=1001(dev_senior)
+vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_senior
+New SMB password:
+Retype new SMB password:
+vboxuser@linuxubunto:~$ sudo smbpasswd -a dev_junior
+New SMB password:
+Retype new SMB password:
+vboxuser@linuxubunto:~$ sudo mkdir -p /srv/samba/publico
+vboxuser@linuxubunto:~$ sudo chown nobody:nogroup /srv/samba/publico
+vboxuser@linuxubunto:~$ sudo chmod 777 /srv/samba/publico
+vboxuser@linuxubunto:~$ sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.bkp
+vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
+Comando 'sodo' não encontrado, você quis dizer:
+  comando 'nodo' do snap nodo (master)
+  comando 'todo' do deb devtodo (0.1.20+git20200830.0ad52b0-3)
+  comando 'sudo' do deb sudo (1.9.15p5-3ubuntu5.24.04.1)
+  comando 'sudo' do deb sudo-ldap (1.9.15p5-3ubuntu5.24.04.1)
+  comando 'solo' do deb solo1-cli (0.1.1-4)
+
+Veja 'snap info <snapname>' para versões adicionais.
+vboxuser@linuxubunto:~$ sodo nano /etc/samba/smb.conf
+Comando 'sodo' não encontrado, você quis dizer:
+  comando 'nodo' do snap nodo (master)
+  comando 'solo' do deb solo1-cli (0.1.1-4)
+  comando 'todo' do deb devtodo (0.1.20+git20200830.0ad52b0-3)
+  comando 'sudo' do deb sudo (1.9.15p5-3ubuntu5.24.04.1)
+  comando 'sudo' do deb sudo-ldap (1.9.15p5-3ubuntu5.24.04.1)
+Veja 'snap info <snapname>' para versões adicionais.
+vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
+vboxuser@linuxubunto:~$ sudo nano /etc/samba/smb.conf
+vboxuser@linuxubunto:~$ sudo systemctl restart smbd
+Warning: The unit file, source configuration file or drop-ins of smbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+vboxuser@linuxubunto:~$ sudo systemctl restart nmbd
+Warning: The unit file, source configuration file or drop-ins of nmbd.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+vboxuser@linuxubunto:~$ testparm
+Load smb config files from /etc/samba/smb.conf
+Loaded services file OK.
+Weak crypto is allowed by GnuTLS (e.g. NTLM as a compatibility fallback)
+
+Server role: ROLE_STANDALONE
+
+Press enter to see a dump of your service definitions
+
+# Global parameters
+[global]
+	log file = /var/log/samba/log.%m
+	logging = file
+	map to guest = Bad User
+	max log size = 1000
+	obey pam restrictions = Yes
+	pam password change = Yes
+	panic action = /usr/share/samba/panic-action %d
+	passwd chat = *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+	passwd program = /usr/bin/passwd %u
+	server role = standalone server
+	server string = %h server (Samba, Ubuntu)
+	unix password sync = Yes
+	usershare allow guests = Yes
+	idmap config * : backend = tdb
+
+
+[printers]
+	browseable = No
+	comment = All Printers
+
+
+create mask = 0700
+	path = /var/tmp
+	printable = Yes
+
+
+[print$]
+	comment = Printer Drivers
+	path = /var/lib/samba/printers
+
+
+[Publico]
+	comment = Compartilhamento Publico de Arquivos
+	guest ok = Yes
+	path = /srv/samba/publico
+	read only = No
+
+
+[Projetos]
+	comment = Acesso restrito para Equipe de Desenvolvimento
+	path = /srv/projetos
+	read only = No
+	valid users = @desenvolvedores
+vboxuser@linuxubunto:~$ systemctl status smbd
+Warning: The unit file, source configuration file or drop-ins of smbd.service c>
+● smbd.service - Samba SMB Daemon
+     Loaded: loaded (/usr/lib/systemd/system/smbd.service; enabled; preset: ena>
+     Active: active (running) since Tue 2026-01-20 13:19:41 UTC; 1min 0s ago
+       Docs: man:smbd(8)
+             man:samba(7)
+             man:smb.conf(5)
+    Process: 4460 ExecCondition=/usr/share/samba/is-configured smb (code=exited>
+   Main PID: 4464 (smbd)
+     Status: "smbd: ready to serve connections..."
+      Tasks: 3 (limit: 3219)
+     Memory: 7.5M (peak: 8.0M)
+        CPU: 151ms
+     CGroup: /system.slice/smbd.service
+             ├─4464 /usr/sbin/smbd --foreground --no-process-group
+             ├─4468 "smbd: notifyd" .
+             └─4469 "smbd: cleanupd "
+
+
