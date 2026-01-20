@@ -1,6 +1,7 @@
-vboxuser@linuxubunto:~$ sudo apt-get update
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get update
 [sudo] senha para vboxuser: 
-Atingido:1 http://security.ubuntu.com/ubuntu noble-security InRelease
+
+Resposta t: Atingido:1 http://security.ubuntu.com/ubuntu noble-security InRelease
 Atingido:2 http://archive.ubuntu.com/ubuntu noble InRelease                  
 Atingido:3 https://dl.google.com/linux/chrome/deb stable InRelease           
 Atingido:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease
