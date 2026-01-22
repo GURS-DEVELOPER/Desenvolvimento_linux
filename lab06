@@ -1,0 +1,214 @@
+# 1º Instalar e Configurar o Servidor Web (Apache)
+
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get update 
+Resposta t: Atingido:1 http://archive.ubuntu.com/ubuntu noble InRelease                                               
+Obter:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]                               
+Obter:3 https://dl.google.com/linux/chrome/deb stable InRelease [1.825 B]                                 
+Obter:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]                          
+Obter:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Obter:6 https://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1.208 B]
+Obter:7 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1.409 kB]
+Obter:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1.698 kB]
+Obter:9 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [229 kB]
+Obter:10 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [21,5 kB]           
+Obter:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 c-n-f Metadata [9.800 B]       
+Obter:12 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Components [212 B]       
+Obter:13 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [924 kB]
+Obter:14 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [209 kB]
+Obter:15 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [74,2 kB]
+Obter:16 http://security.ubuntu.com/ubuntu noble-security/universe amd64 c-n-f Metadata [19,7 kB]
+Obter:17 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [28,0 kB]
+Obter:18 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [6.472 B]
+Obter:19 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Components [212 B]
+Obter:20 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [314 kB]          
+Obter:21 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [175 kB]        
+Obter:22 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 c-n-f Metadata [16,0 kB]
+Obter:23 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Components [212 B]
+Obter:24 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1.519 kB]
+Obter:25 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [310 kB]
+Obter:26 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [386 kB]
+Obter:27 http://archive.ubuntu.com/ubuntu noble-updates/universe Icons (48x48) [236 kB]
+Obter:28 http://archive.ubuntu.com/ubuntu noble-updates/universe Icons (64x64) [370 kB]
+Obter:29 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 c-n-f Metadata [31,6 kB]
+Obter:30 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [30,9 kB]
+Obter:31 http://archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [6.340 B]
+Obter:32 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Obter:33 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [7.284 B]
+Obter:34 http://archive.ubuntu.com/ubuntu noble-backports/restricted amd64 Components [216 B]
+Obter:35 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [10,5 kB]
+Obter:36 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Components [212 B]
+Baixados 8.425 kB em 7s (1.184 kB/s) 
+
+Terminal: vboxuser@linuxubunto:~$ sudo apt-get install apache2
+Resposta t: Lendo listas de pacotes... Pronto
+Construindo árvore de dependências... Pronto
+Lendo informação de estado... Pronto        
+Os pacotes adicionais a seguir serão instalados:
+  apache2-bin apache2-data apache2-utils libapr1t64 libaprutil1-dbd-sqlite3 libaprutil1-ldap libaprutil1t64
+Pacotes sugeridos:
+  apache2-doc apache2-suexec-pristine | apache2-suexec-custom
+Os NOVOS pacotes a seguir serão instalados:
+  apache2 apache2-bin apache2-data apache2-utils libapr1t64 libaprutil1-dbd-sqlite3 libaprutil1-ldap libaprutil1t64
+0 pacotes atualizados, 8 pacotes novos instalados, 0 a serem removidos e 156 não atualizados.
+É preciso baixar 1.906 kB de arquivos.
+Depois desta operação, 7.474 kB adicionais de espaço em disco serão usados.
+Você quer continuar? [S/n] S
+Obter:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libapr1t64 amd64 1.7.2-3.1ubuntu0.1 [108 kB]
+Obter:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libaprutil1t64 amd64 1.6.3-1.1ubuntu7 [91,9 kB]
+Obter:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libaprutil1-dbd-sqlite3 amd64 1.6.3-1.1ubuntu7 [11,2 kB]
+Obter:4 http://archive.ubuntu.com/ubuntu noble/main amd64 libaprutil1-ldap amd64 1.6.3-1.1ubuntu7 [9.116 B]
+Obter:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apache2-bin amd64 2.4.58-1ubuntu8.10 [1.334 kB]
+Obter:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apache2-data all 2.4.58-1ubuntu8.10 [163 kB]
+Obter:7 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apache2-utils amd64 2.4.58-1ubuntu8.10 [98,1 kB]
+Obter:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 apache2 amd64 2.4.58-1ubuntu8.10 [90,2 kB]
+Baixados 1.906 kB em 4s (451 kB/s) 
+A seleccionar pacote anteriormente não seleccionado libapr1t64:amd64.
+(Lendo banco de dados ... 220014 ficheiros e diretórios atualmente instalados.)
+A preparar para desempacotar .../0-libapr1t64_1.7.2-3.1ubuntu0.1_amd64.deb ...
+A descompactar libapr1t64:amd64 (1.7.2-3.1ubuntu0.1) ...
+A seleccionar pacote anteriormente não seleccionado libaprutil1t64:amd64.
+A preparar para desempacotar .../1-libaprutil1t64_1.6.3-1.1ubuntu7_amd64.deb ...
+A descompactar libaprutil1t64:amd64 (1.6.3-1.1ubuntu7) ...
+A seleccionar pacote anteriormente não seleccionado libaprutil1-dbd-sqlite3:amd64.
+A preparar para desempacotar .../2-libaprutil1-dbd-sqlite3_1.6.3-1.1ubuntu7_amd64.deb ...
+A descompactar libaprutil1-dbd-sqlite3:amd64 (1.6.3-1.1ubuntu7) ...
+A seleccionar pacote anteriormente não seleccionado libaprutil1-ldap:amd64.
+A preparar para desempacotar .../3-libaprutil1-ldap_1.6.3-1.1ubuntu7_amd64.deb ...
+A descompactar libaprutil1-ldap:amd64 (1.6.3-1.1ubuntu7) ...
+A seleccionar pacote anteriormente não seleccionado apache2-bin.
+A preparar para desempacotar .../4-apache2-bin_2.4.58-1ubuntu8.10_amd64.deb ...
+A descompactar apache2-bin (2.4.58-1ubuntu8.10) ...
+A seleccionar pacote anteriormente não seleccionado apache2-data.
+A preparar para desempacotar .../5-apache2-data_2.4.58-1ubuntu8.10_all.deb ...
+A descompactar apache2-data (2.4.58-1ubuntu8.10) ...
+A seleccionar pacote anteriormente não seleccionado apache2-utils.
+A preparar para desempacotar .../6-apache2-utils_2.4.58-1ubuntu8.10_amd64.deb ...
+A descompactar apache2-utils (2.4.58-1ubuntu8.10) ...
+A seleccionar pacote anteriormente não seleccionado apache2.
+A preparar para desempacotar .../7-apache2_2.4.58-1ubuntu8.10_amd64.deb ...
+A descompactar apache2 (2.4.58-1ubuntu8.10) ...
+Configurando libapr1t64:amd64 (1.7.2-3.1ubuntu0.1) ...
+Configurando apache2-data (2.4.58-1ubuntu8.10) ...
+Configurando libaprutil1t64:amd64 (1.6.3-1.1ubuntu7) ...
+Configurando libaprutil1-ldap:amd64 (1.6.3-1.1ubuntu7) ...
+Configurando libaprutil1-dbd-sqlite3:amd64 (1.6.3-1.1ubuntu7) ...
+Configurando apache2-utils (2.4.58-1ubuntu8.10) ...
+Configurando apache2-bin (2.4.58-1ubuntu8.10) ...
+Configurando apache2 (2.4.58-1ubuntu8.10) ...
+Enabling module mpm_event.
+Enabling module authz_core.
+Enabling module authz_host.
+Enabling module authn_core.
+Enabling module auth_basic.
+Enabling module access_compat.
+Enabling module authn_file.
+Enabling module authz_user.
+Enabling module alias.
+Enabling module dir.
+Enabling module autoindex.
+Enabling module env.
+Enabling module mime.
+Enabling module negotiation.
+Enabling module setenvif.
+Enabling module filter.
+Enabling module deflate.
+Enabling module status.
+Enabling module reqtimeout.
+Enabling conf charset.
+Enabling conf localized-error-pages.
+Enabling conf other-vhosts-access-log.
+Enabling conf security.
+Enabling conf serve-cgi-bin.
+Enabling site 000-default.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /usr/lib/systemd/system/apache2.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/apache-htcacheclean.service → /usr/lib/systemd/system/apache-htcacheclean.service.
+A processar 'triggers' para ufw (0.36.2-6) ...
+A processar 'triggers' para man-db (2.12.0-4build2) ...
+A processar 'triggers' para libc-bin (2.39-0ubuntu8.6) ...
+
+Terminal: vboxuser@linuxubunto:~$ echo "<h1>Bem-vindo ao Servidor Web da Empresa\!</h1>" | sudo tee /var/www/html/index.html
+Resposta t: <h1>Bem-vindo ao Servidor Web da Empresa\!</h1>
+
+# 2º  Instalar e Configurar o Servidor DNS (BIND9)
+
+Termilal: vboxuser@linuxubunto:~$ sudo apt-get install bind9
+Resposta t: Lendo listas de pacotes... Pronto
+Construindo árvore de dependências... Pronto
+Lendo informação de estado... Pronto        
+Os pacotes adicionais a seguir serão instalados:
+  bind9-utils
+Pacotes sugeridos:
+  bind-doc
+Os NOVOS pacotes a seguir serão instalados:
+  bind9 bind9-utils
+0 pacotes atualizados, 2 pacotes novos instalados, 0 a serem removidos e 156 não atualizados.
+É preciso baixar 417 kB de arquivos.
+Depois desta operação, 1.612 kB adicionais de espaço em disco serão usados.
+Você quer continuar? [S/n] S
+Obter:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bind9-utils amd64 1:9.18.39-0ubuntu0.24.04.2 [159 kB]
+Obter:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 bind9 amd64 1:9.18.39-0ubuntu0.24.04.2 [258 kB]
+Baixados 417 kB em 1s (385 kB/s)
+A seleccionar pacote anteriormente não seleccionado bind9-utils.
+(Lendo banco de dados ... 220720 ficheiros e diretórios atualmente instalados.)
+A preparar para desempacotar .../bind9-utils_1%3a9.18.39-0ubuntu0.24.04.2_amd64.deb ...
+A descompactar bind9-utils (1:9.18.39-0ubuntu0.24.04.2) ...
+A seleccionar pacote anteriormente não seleccionado bind9.
+A preparar para desempacotar .../bind9_1%3a9.18.39-0ubuntu0.24.04.2_amd64.deb ...
+A descompactar bind9 (1:9.18.39-0ubuntu0.24.04.2) ...
+Configurando bind9-utils (1:9.18.39-0ubuntu0.24.04.2) ...
+Configurando bind9 (1:9.18.39-0ubuntu0.24.04.2) ...
+info: Selecionando GID da faixa 100 a 999 ...
+info: Adicionando grupo 'bind' (GID 124) ...
+info: Selecionando UID da faixa 100 a 999 ...
+
+info: Adicionando usuário de sistema 'bind' (UID 123) ...
+info: Adicionando novo usuário 'bind' (UID 123) com grupo 'bind' ...
+info: Não criando diretório pessoal '/var/cache/bind'.
+wrote key file "/etc/bind/rndc.key"
+named-resolvconf.service is a disabled or a static unit, not starting it.
+Created symlink /etc/systemd/system/bind9.service → /usr/lib/systemd/system/named.service.
+Created symlink /etc/systemd/system/multi-user.target.wants/named.service → /usr/lib/systemd/system/named.service.
+A processar 'triggers' para man-db (2.12.0-4build2) ...
+A processar 'triggers' para ufw (0.36.2-6) ...
+
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/bind/named.conf.local
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/bind/db.empresa.local
+
+# 3º  Reiniciar, Configurar Cliente e Testar
+
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/bind/db.empresa.local
+Terminal: vboxuser@linuxubunto:~$ sudo nano /etc/resolv.conf:
+Terminal: vboxuser@linuxubunto:~$ dig www.empresa.local
+Resposta t: ; <<>> DiG 9.18.39-0ubuntu0.24.04.2-Ubuntu <<>> www.empresa.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 30618
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.empresa.local.        IN    A
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Thu Jan 22 12:41:11 UTC 2026
+;; MSG SIZE  rcvd: 46
+
+Terminal: vboxuser@linuxubunto:~$ curl http://www.empresa.local
+Resposta t: Caution: You are using the Snap version of curl.
+    Due to Snap's sandbox nature, this version has some limitations.
+    For example, it may not be able to access hidden folders in your home directory
+    or other restricted areas of the os.
+
+    Which means you may encounter errors when using snap curl to download and execute some script.
+    For those cases, you might want to use the native curl package.
+    For details, see: https://github.com/boukendesho/curl-snap/issues/1
+    
+    To stop seeing this message, run the following command:
+    $ curl.snap-acked
+
+curl: (6) Could not resolve host: www.empresa.local
+
