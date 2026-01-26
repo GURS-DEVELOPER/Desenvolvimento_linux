@@ -1,0 +1,66 @@
+# Etapa 1: Configurar o Firewall com IPTABLES
+
+Terminal: ramon@ramon-VirtualBox:~$ nano firewall.sh
+
+# Etapa 2: Instalar e Configurar o Proxy (Squid)
+
+Terminal: ramon@ramon-VirtualBox:~$ sudo apt-get install squid
+Resposta t: Lendo listas de pacotes... Pronto
+Construindo árvore de dependências... Pronto
+Lendo informação de estado... Pronto        
+Os pacotes adicionais a seguir serão instalados:
+  libdbi-perl libecap3 squid-common squid-langpack
+Pacotes sugeridos:
+  libmldbm-perl libnet-daemon-perl libsql-statement-perl
+  squidclient squid-cgi squid-purge resolvconf smbclient
+  winbind
+Os NOVOS pacotes a seguir serão instalados:
+  libdbi-perl libecap3 squid squid-common squid-langpack
+0 pacotes atualizados, 5 pacotes novos instalados, 0 a serem removidos e 308 não atualizados.
+É preciso baixar 3.869 kB de arquivos.
+Depois desta operação, 15,4 MB adicionais de espaço em disco serão usados.
+Você quer continuar? [S/n] S
+Obter:1 http://br.archive.ubuntu.com/ubuntu noble/main amd64 libecap3 amd64 1.0.1-3.4ubuntu2 [17,0 kB]
+Obter:2 http://br.archive.ubuntu.com/ubuntu noble/main amd64 squid-langpack all 20220130-1 [175 kB]
+Obter:3 http://br.archive.ubuntu.com/ubuntu noble-updates/main amd64 squid-common all 6.13-0ubuntu0.24.04.3 [214 kB]
+Obter:4 http://br.archive.ubuntu.com/ubuntu noble/main amd64 libdbi-perl amd64 1.643-4build3 [721 kB]
+Obter:5 http://br.archive.ubuntu.com/ubuntu noble-updates/main amd64 squid amd64 6.13-0ubuntu0.24.04.3 [2.743 kB]
+Baixados 3.869 kB em 4s (1.059 kB/s)
+A seleccionar pacote anteriormente não seleccionado libecap3:amd64.
+(Lendo banco de dados ... 173124 ficheiros e diretórios atualmente instalados.)
+A preparar para desempacotar .../libecap3_1.0.1-3.4ubuntu2_amd64.deb ...
+A descompactar libecap3:amd64 (1.0.1-3.4ubuntu2) ...
+A seleccionar pacote anteriormente não seleccionado squid-langpack.
+A preparar para desempacotar .../squid-langpack_20220130-1_all.deb ...
+A descompactar squid-langpack (20220130-1) ...
+A seleccionar pacote anteriormente não seleccionado squid-common.
+A preparar para desempacotar .../squid-common_6.13-0ubuntu0.24.04.3_all.deb ...
+A descompactar squid-common (6.13-0ubuntu0.24.04.3) ...
+A seleccionar pacote anteriormente não seleccionado libdbi-perl:amd64.
+A preparar para desempacotar .../libdbi-perl_1.643-4build3_amd64.deb ...
+A descompactar libdbi-perl:amd64 (1.643-4build3) ...
+A seleccionar pacote anteriormente não seleccionado squid.
+A preparar para desempacotar .../squid_6.13-0ubuntu0.24.04.3_amd64.deb ...
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+A descompactar squid (6.13-0ubuntu0.24.04.3) ...
+Configurando squid-langpack (20220130-1) ...
+Configurando libdbi-perl:amd64 (1.643-4build3) ...
+Configurando libecap3:amd64 (1.0.1-3.4ubuntu2) ...
+Configurando squid-common (6.13-0ubuntu0.24.04.3) ...
+Configurando squid (6.13-0ubuntu0.24.04.3) ...
+Setcap worked! /usr/lib/squid/pinger is not suid!
+Skipping profile in /etc/apparmor.d/disable: usr.sbin.squid
+Created symlink /etc/systemd/system/multi-user.target.wants/squid.service → /usr/lib/systemd/system/squid.service.
+A processar 'triggers' para ufw (0.36.2-6) ...
+A processar 'triggers' para man-db (2.12.0-4build2) ...
+A processar 'triggers' para libc-bin (2.39-0ubuntu8.5) ...
+Terminal: ramon@ramon-VirtualBox:~$ sudo nano /etc/squid/sites_bloqueados.txt
+Terminal: ramon@ramon-VirtualBox:~$ sudo nano /etc/squid/squid.conf
+
+# Etapa 3: Reiniciar e Testar
+
+Terminal: ramon@ramon-VirtualBox:~$ sudo systemctl restart squid
+
+
+
+
